@@ -10,11 +10,13 @@
       {{item.label}}
       </li>
     </ul>
+    <components-a msgfromfather='来自父组件的信息'></components-a><!-- 使用组件A -->
   </div>
 </template>
 
 <script>
 import Store from './store.js'//引入同级目录中store.js中的方法
+import ComponentsA from './components/componentsA'//引入组件A
 
 export default {
   data:function(){
@@ -24,6 +26,7 @@ export default {
       newItem:''
     }
   },
+  components:{ComponentsA},//引入组件A
   watch:{
     items:{
       handler:function(items){
