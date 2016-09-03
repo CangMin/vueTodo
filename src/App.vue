@@ -14,14 +14,22 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Store from './store.js'//引入同级目录中store.js中的方法
 
 export default {
   data:function(){
     return {
       title:'这是一个待办事项列表',
-      items:[],
+      items:Store.fetch(),
       newItem:''
+    }
+  },
+  watch:{
+    items:{
+      handler:function(items){
+        Store.save(items)
+      },
+      deep:true
     }
   },
   methods:{
