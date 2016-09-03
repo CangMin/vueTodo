@@ -3,8 +3,10 @@
     <h1>{{title}}</h1>
     <!-- <h1 v-text="title"></h1> 和上面效果相同-->
     <ul>
-    <!-- 指令v-for用于遍历数据对象中的值；指令v-bind:class 绑定一个样式对象，键为样式类名，值为数据对象中的属性布尔值，用来控制是否加载.finished样式-->
-      <li v-for="item in items" v-bind:class="{finished:item.isFinished}">{{item.label}}</li>
+    <!-- 指令v-for用于遍历数据对象中的值；指令v-bind:class 绑定一个样式对象，键为样式类名，值为数据对象中的属性布尔值，用来控制是否加载.finished样式;v-on:click为事件指令-->
+      <li v-for="item in items" v-bind:class="{finished:item.isFinished}" v-on:click="toggleFinish(item)">
+      {{item.label}}
+      </li>
     </ul>
   </div>
 </template>
@@ -26,6 +28,11 @@ export default {
           isFinished:false
         }
       ]
+    }
+  },
+  methods:{
+    toggleFinish:function(item){
+     item.isFinished=!item.isFinished;//属性取反
     }
   }
 }
