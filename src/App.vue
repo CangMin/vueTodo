@@ -1,24 +1,11 @@
 <template>
   <div id="app">
-    <img class="logo" src="./assets/logo.png">
-    <hello></hello>
-    <p>
-      Welcome to your Vue.js app!
-    </p>
-    <p>
-      To get a better understanding of how this boilerplate works, check out
-      <a href="http://vuejs-templates.github.io/webpack" target="_blank">its documentation</a>.
-      It is also recommended to go through the docs for
-      <a href="http://webpack.github.io/" target="_blank">Webpack</a> and
-      <a href="http://vuejs.github.io/vue-loader/" target="_blank">vue-loader</a>.
-      If you have any issues with the setup, please file an issue at this boilerplate's
-      <a href="https://github.com/vuejs-templates/webpack" target="_blank">repository</a>.
-    </p>
-    <p>
-      You may also want to checkout
-      <a href="https://github.com/vuejs/vue-router/" target="_blank">vue-router</a> for routing and
-      <a href="https://github.com/vuejs/vuex/" target="_blank">vuex</a> for state management.
-    </p>
+    <h1>{{title}}</h1>
+    <!-- <h1 v-text="title"></h1> 和上面效果相同-->
+    <ul>
+    <!-- 指令v-for用于遍历数据对象中的值；指令v-bind:class 绑定一个样式对象，键为样式类名，值为数据对象中的属性布尔值，用来控制是否加载.finished样式-->
+      <li v-for="item in items" v-bind:class="{finished:item.isFinished}">{{item.label}}</li>
+    </ul>
   </div>
 </template>
 
@@ -26,13 +13,28 @@
 import Hello from './components/Hello'
 
 export default {
-  components: {
-    Hello
+  data:function(){
+    return {
+      title:'这是一个待办事项列表',
+      items:[
+        {
+          label:'看书',
+          isFinished:true
+        },
+        {
+          label:'打球',
+          isFinished:false
+        }
+      ]
+    }
   }
 }
 </script>
 
 <style>
+.finished{
+  text-decoration:underline;
+}
 html {
   height: 100%;
 }
