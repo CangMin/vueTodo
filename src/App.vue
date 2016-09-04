@@ -10,7 +10,8 @@
       {{item.label}}
       </li>
     </ul>
-    <components-a msgfromfather='来自父组件的信息'></components-a><!-- 使用组件A -->
+    <p>来自儿子的信息：{{childWords}}</p>
+    <components-a msgfromfather='来自父组件的信息' v-on:child-tell-me-something='listenToMyBoy'></components-a><!-- 使用组件A -->
   </div>
 </template>
 
@@ -23,7 +24,8 @@ export default {
     return {
       title:'这是一个待办事项列表',
       items:Store.fetch(),
-      newItem:''
+      newItem:'',
+      childWords:''
     }
   },
   components:{ComponentsA},//引入组件A
@@ -45,6 +47,9 @@ export default {
       isFinished:false
      });
       this.newItem = '';//清空输入框newItem模型
+    },
+    listenToMyBoy:function(msg){
+      this.childWords = msg;
     }
   }
 }

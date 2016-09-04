@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h1>{{msgfromfather}}</h1>
-    <button v-on:click="onClickMe">点击</button>
+    <button v-on:click="onClickMe">open mouse</button>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ export default {
   methods:{
     onClickMe:function(){
       console.log(this.msgfromfather)
+      this.$emit('child-tell-me-something',this.msg);
     }
   }
 }
